@@ -1,4 +1,4 @@
-// Scripts d'exemple (Pine Script v6). Clé = identifiant interne, `label` = texte du menu déroulant.
+// Example scripts (Pine Script v6). Key = internal id, `label` = text shown in the dropdown.
 
 export const TEMPLATES = {
   'sma-cross': {
@@ -25,9 +25,9 @@ if ta.crossunder(fast, slow)
 indicator("McGinley Dynamic (MDI)", overlay=true)
 
 length = input.int(14, "Length", minval=1)
-k      = input.float(0.6, "Constante k", minval=0.1, step=0.05)
+k      = input.float(0.6, "Constant k", minval=0.1, step=0.05)
 
-// McGinley Dynamic : une moyenne qui s'ajuste à la vitesse du marché
+// McGinley Dynamic: a moving average that adjusts to the speed of the market
 var float md = na
 md := na(md) ? close : md + (close - md) / (k * length * math.pow(close / md, 4))
 
@@ -37,7 +37,7 @@ plot(ta.sma(close, length), "SMA", color=color.aqua)
   },
 
   'rsi-bands': {
-    label: 'RSI avec zones',
+    label: 'RSI with levels',
     code: `//@version=6
 indicator("RSI", overlay=false)
 
@@ -45,14 +45,14 @@ len = input.int(14, "Length", minval=1)
 r   = ta.rsi(close, len)
 
 plot(r, "RSI", color=color.purple, linewidth=2)
-plot(70, "Surachat", color=color.red)
-plot(30, "Survente", color=color.green)
-plot(50, "Neutre", color=color.gray)
+plot(70, "Overbought", color=color.red)
+plot(30, "Oversold", color=color.green)
+plot(50, "Neutral", color=color.gray)
 `,
   },
 
   'ema-ribbon': {
-    label: 'Ruban d’EMA',
+    label: 'EMA ribbon',
     code: `//@version=6
 indicator("EMA Ribbon", overlay=true)
 

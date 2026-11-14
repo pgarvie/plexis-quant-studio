@@ -94,6 +94,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 10px;
   padding: 12px 14px;
   border-bottom: 1px solid var(--border-soft);
@@ -101,6 +102,7 @@ body {
 
 .toolbar-actions {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 8px;
 }
@@ -210,7 +212,13 @@ body {
 
 .pane-chart {
   flex: 0 0 var(--chart-w);
+  display: flex;
+  flex-direction: column;
   background: var(--panel-chart);
+}
+
+[hidden] {
+  display: none !important;
 }
 
 .pane-editor {
@@ -254,8 +262,144 @@ body {
 }
 
 .chart {
+  flex: 1 1 0;
+  min-height: 0;
   width: 100%;
-  height: 100%;
+}
+
+/* ---------- Barre de données (source / symbole), au-dessus du graphique ---------- */
+.databar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--vela-border);
+  background: var(--vela-bg);
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.field-label {
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+}
+
+.input {
+  width: 150px;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #000;
+  color: var(--fg-bright);
+  font: 500 13.5px var(--mono);
+}
+.input:hover {
+  border-color: #3a3c44;
+}
+.input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.input::placeholder {
+  color: #5d6068;
+}
+.input-key {
+  width: 190px;
+}
+
+.select-sm {
+  flex: 0 0 auto;
+  width: 160px;
+  max-width: none;
+}
+.select-sm select {
+  height: 32px;
+  padding: 0 32px 0 12px;
+  border-radius: 8px;
+  font-size: 13.5px;
+}
+
+.btn-sm {
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  gap: 6px;
+}
+
+.key-link {
+  font-size: 12.5px;
+  color: #5b9cf6;
+  text-decoration: none;
+}
+.key-link:hover {
+  text-decoration: underline;
+}
+
+.data-msg {
+  flex: 1 1 220px;
+  min-width: 0;
+  font-size: 12.5px;
+  color: var(--fg-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.data-msg.ok {
+  color: var(--ok);
+}
+.data-msg.err {
+  color: var(--err);
+}
+
+/* ---------- Barre de fichiers (Open / Save / Save As), haut du volet éditeur ---------- */
+.filebar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 14px 6px 8px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.filebar-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.file-name {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font: 500 12.5px var(--mono);
+  color: var(--fg-dim);
+}
+.file-name.named {
+  color: var(--fg-bright);
+}
+.file-name-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.file-dirty {
+  flex: 0 0 auto;
+  color: var(--eyebrow);
+  font-size: 11px;
 }
 
 /* ---------- Barre de statut ---------- */
